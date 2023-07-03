@@ -6,16 +6,15 @@ const {
     writeToFile, 
 } = require('/Users/danielle/bootcamp/note-taker-w11/helpers/jsUtils.js');
 
-// GET route for retreving all theh tips 
 notes.get('/', (req, res) => {
     console.info(`${req.method} request received for notes`);
-    readFromFile('/Users/danielle/bootcamp/note-taker-w11/db/db.json').then((data) => res.json (JSON.parse(data)));
+    readFromFile('./db/db.json').then((data) => res.json (JSON.parse(data)));
 });
 
 // GET route for a specific tip
 notes.get('/:note_id', (req, res) => {
     const noteId = req.params.note_id;
-    readFromFile('/Users/danielle/bootcamp/note-taker-w11/db/db.json')
+    readFromFile('./db/db.json')
     .then ((data) => JSON.parse(data))
     .then ((json) => {
         const result = json.filter((note) => note.tip_id === tipId);
@@ -29,11 +28,11 @@ notes.get('/:note_id', (req, res) => {
 // DELETE route for a specific tip 
 notes.delete('/:note_id', (req, res) => {
     const noteId = req.params.note_id;
-    readFromFile('/Users/danielle/bootcamp/note-taker-w11/db/db.json')
+    readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
         const result = json.filter((note) => note.id !==noteId);
-        writeToFile('/Users/danielle/bootcamp/note-taker-w11/db/db.json', result);
+        writeToFile('./db/db.json', result);
         res.json(`Item ${noteId} has been deleted`);
     })
 }); 
@@ -51,7 +50,7 @@ notes.post('/', (req, res) => {
             id: uuidv4(),
         };
 
-        readAndAppend(newNote, '/Users/danielle/bootcamp/note-taker-w11/db/db.json');
+        readAndAppend(newNote, './db/db.json');
         res.json(`Note added successfully`);
     } else {
         res.error('Error in adding Note');
