@@ -4,7 +4,7 @@ const {
     readFromFile,
     readAndAppend,
     writeToFile, 
-} = require('./helpers/jsUtils.js');
+} = require('../helpers/jsUtils');
 
 notes.get('/', (req, res) => {
     console.info(`${req.method} request received for notes`);
