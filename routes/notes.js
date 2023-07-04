@@ -4,7 +4,7 @@ const {
     readFromFile,
     readAndAppend,
     writeToFile, 
-} = require('/Users/danielle/bootcamp/note-taker-w11/helpers/jsUtils.js');
+} = require('./helpers/jsUtils.js');
 
 notes.get('/', (req, res) => {
     console.info(`${req.method} request received for notes`);
