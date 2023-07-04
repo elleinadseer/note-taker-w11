@@ -6,12 +6,13 @@ const {
     writeToFile, 
 } = require('../helpers/fsUtils');
 
+// Acknowledging request
 notes.get('/', (req, res) => {
     console.info(`${req.method} request received for notes`);
     readFromFile('./db/db.json').then((data) => res.json (JSON.parse(data)));
 });
 
-// GET route for a specific tip
+// Using get for a tip and returning a warning message
 notes.get('/:note_id', (req, res) => {
     const noteId = req.params.note_id;
     readFromFile('./db/db.json')
@@ -25,7 +26,7 @@ notes.get('/:note_id', (req, res) => {
     });
 });
 
-// DELETE route for a specific tip 
+// Using DELETE to delete a note
 notes.delete('/:note_id', (req, res) => {
     const noteId = req.params.note_id;
     readFromFile('./db/db.json')
@@ -37,7 +38,7 @@ notes.delete('/:note_id', (req, res) => {
     })
 }); 
 
-// POST route for a new UI/UX note
+// Using POST for a new note
 notes.post('/', (req, res) => {
     console.log(req.body);
 
